@@ -29,3 +29,19 @@ function listenToAddTodoForm() {
     input.reset();
   });
 }
+
+function addTodos(todos) {
+  console.log(todos);
+  todos.forEach((todo) => addTodo(todo));
+}
+
+function getTodos() {
+  listenToAddTodoForm();
+
+  liParent.innerHTML = "";
+  fetch("http://localhost:3000/todos")
+    .then((res) => res.json())
+    .then((todos) => addTodos(todos));
+}
+
+getTodos();
